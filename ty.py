@@ -36,7 +36,7 @@ def printScreen(error):
     os.system('clear')
     timer = time.time() - start
     wpm = ((overallWordCount)/timer)*60
-    print("WPM: {:.0f}      Words: {}/{}       Time: {:.5}s     Sentences: {}/{}".format(wpm, i, wordCount, timer, done, challengeCount))
+    print("WPM: {:.0f}      Words: {}/{}       Time: {:.5}s     Sentences: {}/{}    Mistakes: {}".format(wpm, i, wordCount, timer, done, challengeCount, mistakes))
     print("")
     for j in range(wordCount):
         if ( j < i ):
@@ -58,6 +58,7 @@ challenge = f.readlines()
 overallWordCount = 0
 done = 0
 wpm = 0
+mistakes = 0
 
 # welcome screen
 os.system('clear')
@@ -85,6 +86,7 @@ while(done < challengeCount):
                 string = ""
                 continue
             else:
+                mistakes+=1
                 printScreen(1)
                 string = ""
                 continue
