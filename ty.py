@@ -5,10 +5,12 @@ import os
 import time
 import random
 
+# for printing via sys.stdout
 def sysprint(inputstring):
     sys.stdout.write(inputstring)
     sys.stdout.flush()
 
+# just a countdown
 def countdown():
     os.system('clear')
     print("3")
@@ -21,6 +23,7 @@ def countdown():
     time.sleep(1)
     os.system('clear')
 
+# print the screen including the information
 def printScreen(error):
     os.system('clear')
     timer = time.time() - start
@@ -36,25 +39,29 @@ def printScreen(error):
             sysprint(words[j]+" ")
     print("\n")
 
+# characters which can be used
 alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.,'?!:;-_"
 
-#challenge = ["Lore ipsum dolor sit amet.", "Bananen sind gesund.", "Ich bin Toni Hansen."]
+# open a file and save it line by line in challenge
 f = open("sentences","r")
 challenge = f.readlines()
+
+# initializing
 overallWordCount = 0
 done = 0
 wpm = 0
 
+# welcome screen
 os.system('clear')
 print("How much sentences do you want to type?")
 challengeCount = int(input())
 countdown()
 
+# timer start
 start = time.time()
 
 while(done < challengeCount):
     i=0
-    j=0
     string=""
     randomChallenge = random.choice(challenge)
     words = randomChallenge.split()
@@ -74,17 +81,16 @@ while(done < challengeCount):
                 string = ""
                 continue
         if (key == keys.BACKSPACE):
-            sys.stdout.write("\b \b")
-            sys.stdout.flush()
+            sysprint("\b \b")
             string = string[:-1]
             continue
-        sys.stdout.write(key)
-        sys.stdout.flush()
+        sysprint(key)
         for letter in alphabet:
             if key == letter:
                 string = string + letter
     done+=1
 
+# end screen
 printScreen(0)
 duration = time.time() - start
 print("You took {:.5}s for {} words.".format(duration,overallWordCount))
