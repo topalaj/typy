@@ -6,7 +6,7 @@ I was inspired by [typeracer](https://play.typeracer.com/).
 
 python
 
-python module [getkey](https://pypi.org/project/getkey/).
+python module [getkey](https://pypi.org/project/getkey/)
 
 ## Usage
 
@@ -14,10 +14,11 @@ Start the game
 ```
 python ./ty.py
 ```
-Enter how many Sentences you want to type.
 
 ## Notes
 
 -This game does not work on windows.
 
 -The game reads the sentences from a file called `sentences`. So you can add your own sentences in your desired language.
+
+-After hitting space or return the input will be checked. When the input is correct, the word will be shown in green. If it's not correct, the word will be shown in red and you need to type the word again.
