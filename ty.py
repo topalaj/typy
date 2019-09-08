@@ -1,3 +1,11 @@
+#!/usr/bin/python
+#     __
+#    / /___ __  ___  __ __
+#   / __/ // / / _ \/ // /
+#   \__/\_, (_) .__/\_, /
+#      /___/ /_/   /___/
+
+
 from getkey import getkey, keys
 from termcolor import colored
 import sys
