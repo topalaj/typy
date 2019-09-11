@@ -1,4 +1,4 @@
-# ty.py - a typing game in the terminal
+# ty.py - a typing game for the terminal
 
 [![2019-09-08-175630-1920x1080-scrot.png](https://i.postimg.cc/1XHxhjPw/2019-09-08-175630-1920x1080-scrot.png)](https://postimg.cc/ZvCs6jW5)
 
