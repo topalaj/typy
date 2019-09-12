@@ -13,6 +13,7 @@ import os
 import time
 import random
 
+
 # for printing via sys.stdout
 def sysprint(inputstring):
     sys.stdout.write(inputstring)
@@ -32,20 +33,28 @@ def countdown():
     os.system('clear')
 
 # print the screen including the information
-def printScreen(error):
+def printScreen():
     os.system('clear')
     timer = time.time() - start
     wpm = ((overallWordCount)/timer)*60
-    print("WPM: {:.0f}      Words: {}/{}       Time: {:.5}s     Sentences: {}/{}    Mistakes: {}".format(wpm, i, wordCount, timer, done, challengeCount, mistakes))
+    print("WPM: {:.0f}      Words: {}/{}       Time: {:.3}s     Sentences: {}/{}    Mistakes: {}".format(wpm, i, wordCount, timer, done, challengeCount, mistakes))
     print("")
     for j in range(wordCount):
         if ( j < i ):
             sysprint(colored(words[j], 'green')+" ")
-        elif ( j == i and error == 1 ):
-            sysprint(colored(words[j], 'red')+" ")
+        elif ( j == i ):
+            for index in range(min(len(string),len(words[i]))):
+                if ( words[i][index] == string[index] ):
+                   sysprint( colored(words[i][index],'green'))
+                elif ( words[i][index] != string[index] ):
+                    sysprint( colored(words[i][index],'red'))
+            for restIndex in range(min(len(string),len(words[i])), len(words[i])):
+                sysprint( words[i][restIndex] )
+            sysprint(" ")
         else:
             sysprint(words[j]+" ")
     print("\n")
+    sysprint(string)
 
 # characters which can be used
 alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.,'?!:;-_"
@@ -75,32 +84,30 @@ while(done < challengeCount):
     randomChallenge = random.choice(challenge)
     words = randomChallenge.split()
     wordCount = len(words)
-    printScreen(0)
     while (i != wordCount):
+        printScreen()
         key = getkey()
         if (key == " " or key == keys.ENTER ):
             if(string == words[i]):
                 i+=1
                 overallWordCount+=1
-                printScreen(0)
+                printScreen()
                 string = ""
                 continue
             else:
                 mistakes+=1
-                printScreen(1)
+                printScreen()
                 string = ""
                 continue
         if (key == keys.BACKSPACE):
-            sysprint("\b \b")
             string = string[:-1]
             continue
-        sysprint(key)
         for letter in alphabet:
             if key == letter:
                 string = string + letter
     done+=1
 
 # end screen
-printScreen(0)
+printScreen()
 duration = time.time() - start
 print("You took {:.5}s for {} words.".format(duration,overallWordCount))
