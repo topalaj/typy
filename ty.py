@@ -71,8 +71,14 @@ mistakes = 0
 
 # welcome screen
 os.system('clear')
-print("How much sentences do you want to type?")
-challengeCount = int(input())
+print("{} sentences loaded.".format(len(challenge)))
+challengeCount=0
+print("How many sentences do you want to type?")
+while(challengeCount<1 or challengeCount>len(challenge)):
+  challengeCount = int(input())
+  if (challengeCount<1 or challengeCount>len(challenge)):
+    os.system('clear')
+    print("Please enter an amount between 0 and {}:".format(len(challenge)))
 countdown()
 
 # timer start
@@ -82,6 +88,7 @@ while(done < challengeCount):
     i=0
     string=""
     randomChallenge = random.choice(challenge)
+    challenge.remove(randomChallenge)
     words = randomChallenge.split()
     wordCount = len(words)
     while (i != wordCount):
